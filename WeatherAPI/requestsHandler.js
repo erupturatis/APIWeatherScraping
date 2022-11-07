@@ -24,11 +24,8 @@ exports.searchForCityOpenWeather = async (city) => {
   return response.data.list[0];
 };
 
-exports.GetCoordDataOpenWeather = async (
-  lat,
-  lon,
-  units = 'metric'
-) => {
+exports.GetCoordData1 = async (lat, lon, units = 'metric') => {
+  // getting data from open weather website
   let response = await axios({
     // searching data for lan and lon
     method: 'get',
@@ -41,6 +38,18 @@ exports.GetCoordDataOpenWeather = async (
     },
   });
   delete response.data.minutely;
+  delete response.data.hourly;
   // maybe adding exact date and hour for the fields
+  return response.data;
+};
+
+exports.GetCoordData2 = async (lat, lon, units = 'metric') => {
+  // getting data from Ventusky website
+  let templateURL = `https://api.waqi.info/feed/geo:${lat};${lon}/?token=${process.env.VENTUSKY}`;
+  let response = await axios({
+    // searching data for lan and lon
+    method: 'get',
+    url: templateURL,
+  });
   return response.data;
 };

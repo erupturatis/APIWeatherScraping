@@ -15,10 +15,12 @@ exports.GetCityCoords = async (req, res, next) => {
 };
 exports.GetCoordsWeather = async (req, res, next) => {
   // getting weather data for specific coords langitude and longitude
-  let responseWeb = await requests.GetCoordDataOpenWeather(
+
+  let responseWeb = await requests.GetCoordData1(
     req.query.lat,
     req.query.lon
   );
+
   responseWeb = { city: req.query.city, ...responseWeb };
   res.send({
     ...responseWeb,
