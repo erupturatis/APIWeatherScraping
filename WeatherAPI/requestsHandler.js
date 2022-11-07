@@ -7,7 +7,7 @@ let searchCallback = (response) => {
   console.log(response.data);
 };
 
-let searchForCity = async (city) => {
+exports.searchForCityOpenWeather = async (city) => {
   let response = await axios({
     // searching city and getting lan and lon
     method: 'get',
@@ -24,7 +24,11 @@ let searchForCity = async (city) => {
   return response.data.list[0];
 };
 
-let getCoordData = async (lat, lon, units = 'metric') => {
+exports.GetCoordDataOpenWeather = async (
+  lat,
+  lon,
+  units = 'metric'
+) => {
   let response = await axios({
     // searching data for lan and lon
     method: 'get',
